@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infra.Repository", "CQ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Domain", "CQRS.Domain\CQRS.Domain.csproj", "{A76690AB-E4F1-425F-BB3A-45A673736791}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS", "CQRS\CQRS.csproj", "{10F222E0-68F6-4950-B230-749AB4B84175}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Api", "CQRS.Api\CQRS.Api.csproj", "{10F222E0-68F6-4950-B230-749AB4B84175}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
