@@ -1,7 +1,7 @@
-﻿using CQRS.Domain.Helpers;
+﻿using Cqrs.Domain.Helpers;
 using FluentValidation;
 
-namespace CQRS.Domain.Commands.CreatePerson;
+namespace Cqrs.Domain.Commands.CreatePerson;
 
 public class CreatePersonCommandValidator : AbstractValidator<CreatePersonCommand>
 {
@@ -13,7 +13,7 @@ public class CreatePersonCommandValidator : AbstractValidator<CreatePersonComman
         RuleFor(x => x.Cpf)
             .Cascade(CascadeMode.Stop)
             .NotEmpty().WithMessage("The field {PropertyName} is mandatory")
-            .Must(StringHelper.IsCpf).WithMessage("The field {PropertyName} is not valid for {PropertyName}");
+            .Must(StringHelper.IsCpf).WithMessage("The value {PropertyValue} is not valid for {PropertyName}");
 
         RuleFor(x => x.DateBirth)
             .NotEmpty().WithMessage("The field {PropertyName} is mandatory");

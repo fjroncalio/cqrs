@@ -3,6 +3,8 @@ using Cqrs.Domain.Contracts;
 using Cqrs.Domain.Queries.ListPerson;
 using Cqrs.Repository;
 using Cqrs.Repository.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MongoDB.Driver;
 
 namespace Cqrs.Api;
@@ -13,7 +15,20 @@ public static class Bootstrap
         services.AddRepositories(configuration);
         services.AddCommands();
         services.AddQueries();
+        services.AddMappers();
+        services.AddValidators();
     }
+    private static void AddValidators(this IServiceCollection services)
+    {
+        services.AddFluentValidationAutoValidation();
+
+        services.AddScoped<IValidator<CreatePersonCommand>, CreatePersonCommandValidator>();
+    }
+
+    private static void AddMappers(this IServiceCollection services) =>
+        services.AddAutoMapper(
+            typeof(ListPersonQueryProfile),
+            typeof(CreatePersonCommandProfile));
 
     private static void AddCommands(this IServiceCollection services)
     {

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
 using CQRS.Domain.Contracts;
 using CQRS.Domain.Core;
 using CQRS.Domain.Domain;
@@ -18,6 +19,9 @@ public class CreatePersonCommandHandler : BaseHandler
 
     public async Task<Guid> HandleAsync(CreatePersonCommand command, CancellationToken cancellationToken)
     {
+        AddNotification("teste");
+        SetStatusCode(HttpStatusCode.ExpectationFailed);
+
         var entity = _mapper.Map<Person>(command);
         await _repository.InsertAsync(entity, cancellationToken);
         return entity.Id;
