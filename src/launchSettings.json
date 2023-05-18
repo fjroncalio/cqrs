@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "cqrs.api": "StartDebugging",
+        "cqrs.consumer": "StartDebugging",
+        "cqrs.job": "StartDebugging"
+      }
+    }
+  }
+}

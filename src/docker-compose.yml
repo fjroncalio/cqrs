@@ -1,0 +1,68 @@
+version: '3.9'
+
+services:
+  cqrs.api:
+    image: ${DOCKER_REGISTRY-}cqrsapi
+    build:
+      context: .
+      dockerfile: CQRS.Api/Dockerfile
+    environment:
+      - MongoRepositorySettings__ConnectionString=mongodb://mongo:27017 
+      - CacheRepositorySettings__ConnectionString=redis:6379
+      - MessageBrokerSettings__ConnectionString=rabbitmq
+    depends_on:
+      - mongo
+      - rabbitmq
+      - redis 
+
+  cqrs.consumer:
+    image: ${DOCKER_REGISTRY-}cqrsconsumer
+    build:
+      context: .
+      dockerfile: CQRS.Consumer/Dockerfile
+    environment:
+      - MongoRepositorySettings__ConnectionString=mongodb://mongo:27017 
+      - MessageBrokerSettings__ConnectionString=rabbitmq
+    depends_on:
+      - mongo
+      - rabbitmq
+
+  cqrs.job:
+    image: ${DOCKER_REGISTRY-}cqrsjob
+    build:
+      context: .
+      dockerfile: CQRS.Job/Dockerfile
+    environment:
+      - MongoRepositorySettings__ConnectionString=mongodb://mongo:27017 
+      - CacheRepositorySettings__ConnectionString=redis:6379
+    depends_on:
+      - mongo
+      - redis
+
+  mongo:
+    container_name: mongo
+    restart: always
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    container_name: redis  
+    restart: always
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    image: rabbitmq:management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672" 
+volumes:
+  mongo_data:
+
+

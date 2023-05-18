@@ -15,11 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Domain", "CQRS.Domain\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Api", "CQRS.Api\CQRS.Api.csproj", "{10F222E0-68F6-4950-B230-749AB4B84175}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Infra.Cache", "CQRS.Infra.Cache\CQRS.Infra.Cache.csproj", "{E6D4D894-16BE-4BAB-8290-C5BB7F3D1C9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infra.Cache", "CQRS.Infra.Cache\CQRS.Infra.Cache.csproj", "{E6D4D894-16BE-4BAB-8290-C5BB7F3D1C9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Consumer", "CQRS.Consumer\CQRS.Consumer.csproj", "{01DCE160-8F21-4721-B9FA-5315BDB28253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Consumer", "CQRS.Consumer\CQRS.Consumer.csproj", "{01DCE160-8F21-4721-B9FA-5315BDB28253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Job", "CQRS.Job\CQRS.Job.csproj", "{A3507051-6EC0-4A59-A9A4-FBF0EF3C1610}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Job", "CQRS.Job\CQRS.Job.csproj", "{A3507051-6EC0-4A59-A9A4-FBF0EF3C1610}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6113D1EA-6762-4C1E-8FA2-DD2AE25C7109}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{A3507051-6EC0-4A59-A9A4-FBF0EF3C1610}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3507051-6EC0-4A59-A9A4-FBF0EF3C1610}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3507051-6EC0-4A59-A9A4-FBF0EF3C1610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6113D1EA-6762-4C1E-8FA2-DD2AE25C7109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6113D1EA-6762-4C1E-8FA2-DD2AE25C7109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6113D1EA-6762-4C1E-8FA2-DD2AE25C7109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6113D1EA-6762-4C1E-8FA2-DD2AE25C7109}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
