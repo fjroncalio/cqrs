@@ -3,7 +3,7 @@
 namespace CQRS.Domain.Contracts.v1;
 
 public interface IBaseRepository<T> where T : IEntity
-{ 
+{
     Task AddAsync(T entity, CancellationToken cancellation);
 
     Task UpdateAsync(T entity, CancellationToken cancellation);

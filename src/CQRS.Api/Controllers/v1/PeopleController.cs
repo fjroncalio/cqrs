@@ -11,11 +11,11 @@ namespace CQRS.Api.Controllers.v1;
 [Route("api/v1/people")]
 public class PeopleController : ControllerBase
 {
-    private readonly ListPersonQueryHandler _listPersonQueryHandler;
-    private readonly GetPersonQueryHandler _getPersonQueryHandler;
     private readonly CreatePersonCommandHandler _createPersonCommandHandler;
-    private readonly UpdatePersonCommandHandler _updatePersonCommandHandler;
     private readonly DeletePersonCommandHandler _deletePersonCommandHandler;
+    private readonly GetPersonQueryHandler _getPersonQueryHandler;
+    private readonly ListPersonQueryHandler _listPersonQueryHandler;
+    private readonly UpdatePersonCommandHandler _updatePersonCommandHandler;
 
     public PeopleController(
         ListPersonQueryHandler listPersonQueryHandler,
@@ -39,17 +39,19 @@ public class PeopleController : ControllerBase
     }
 
     [HttpGet(Name = "List People")]
-    public async Task<IActionResult> GetAsync([FromQuery] string? name, [FromQuery] string? cpf, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAsync([FromQuery] string? name, [FromQuery] string? cpf,
+        CancellationToken cancellationToken)
     {
         var response = await _listPersonQueryHandler.HandleAsync(new ListPersonQuery(name, cpf), cancellationToken);
         return Ok(response);
     }
 
     [HttpPost(Name = "Insert Person")]
-    public async Task<IActionResult> InsertAsync([FromBody] CreatePersonCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> InsertAsync([FromBody] CreatePersonCommand command,
+        CancellationToken cancellationToken)
     {
         var response = await _createPersonCommandHandler.HandleAsync(command, cancellationToken);
-      
+
         return Created($"api/v1/people/{response}", new
         {
             id = response, command.Cpf, command.DateBirth, command.Email, command.Name
@@ -57,7 +59,8 @@ public class PeopleController : ControllerBase
     }
 
     [HttpPut("{id:guid}", Name = "Update Person")]
-    public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdatePersonCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdatePersonCommand command,
+        CancellationToken cancellationToken)
     {
         command.Id = id;
         await _updatePersonCommandHandler.HandleAsync(command, cancellationToken);
