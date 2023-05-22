@@ -1,4 +1,5 @@
 ﻿namespace CQRS.Domain.Queries.v1.GetPerson;
+
 public class GetPersonQuery
 {
     public GetPersonQuery(Guid id)
@@ -6,5 +7,5 @@ public class GetPersonQuery
         Id = id;
     }
 
-    public Guid Id { get; set; }
+    public Guid Id { get; }
 }

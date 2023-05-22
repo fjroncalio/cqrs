@@ -19,6 +19,7 @@ public class UpdatePersonCommandValidator : AbstractValidator<UpdatePersonComman
             .NotEmpty().WithMessage("The field {PropertyName} is mandatory");
 
         RuleFor(x => x.Email)
-            .EmailAddress().WithMessage("The field {PropertyName} is not valid").When(x => !string.IsNullOrWhiteSpace(x.Email));
+            .EmailAddress().WithMessage("The field {PropertyName} is not valid")
+            .When(x => !string.IsNullOrWhiteSpace(x.Email));
     }
 }

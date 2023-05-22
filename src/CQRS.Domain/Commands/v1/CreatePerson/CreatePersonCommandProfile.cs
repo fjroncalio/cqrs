@@ -3,6 +3,7 @@ using CQRS.Domain.Entities.v1;
 using CQRS.Domain.ValueObjects.v1;
 
 namespace CQRS.Domain.Commands.v1.CreatePerson;
+
 public class CreatePersonCommandProfile : Profile
 {
     public CreatePersonCommandProfile()

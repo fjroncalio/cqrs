@@ -1,5 +1,4 @@
-﻿using System.Net;
-using AutoMapper;
+﻿using AutoMapper;
 using CQRS.Domain.Contracts.v1;
 using CQRS.Domain.Core.v1;
 using CQRS.Domain.Entities.v1;
@@ -8,8 +7,8 @@ namespace CQRS.Domain.Commands.v1.CreatePerson;
 
 public class CreatePersonCommandHandler : BaseHandler
 {
-    private readonly IPersonRepository _repository;
     private readonly IMapper _mapper;
+    private readonly IPersonRepository _repository;
 
     public CreatePersonCommandHandler(IPersonRepository repository, IMapper mapper)
     {
@@ -19,8 +18,11 @@ public class CreatePersonCommandHandler : BaseHandler
 
     public async Task<Guid> HandleAsync(CreatePersonCommand command, CancellationToken cancellationToken)
     {
-        AddNotification("teste");
-        SetStatusCode(HttpStatusCode.ExpectationFailed);
+        var currentPerson = await _repository.FindByDocumentAsync(command.Cpf, cancellationToken);
+
+        if (currentPerson is not null)
+            //TODO add validation = $"There is already a person registered with this data."
+            return Guid.Empty;
 
         var entity = _mapper.Map<Person>(command);
         await _repository.AddAsync(entity, cancellationToken);

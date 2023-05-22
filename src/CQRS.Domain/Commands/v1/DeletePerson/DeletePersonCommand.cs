@@ -7,5 +7,5 @@ public class DeletePersonCommand
         Id = id;
     }
 
-    public Guid Id { get; set; }
+    public Guid Id { get; }
 }

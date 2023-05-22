@@ -3,6 +3,7 @@ using CQRS.Domain.Entities.v1;
 using CQRS.Domain.Helpers.v1;
 
 namespace CQRS.Domain.Queries.v1.GetPerson;
+
 public class GetPersonQueryProfile : Profile
 {
     public GetPersonQueryProfile()

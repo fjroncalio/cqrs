@@ -46,17 +46,20 @@ public static class Bootstrap
         services.AddScoped<IValidator<UpdatePersonCommand>, UpdatePersonCommandValidator>();
     }
 
-    private static void AddMappers(this IServiceCollection services) =>
+    private static void AddMappers(this IServiceCollection services)
+    {
         services.AddAutoMapper(
             typeof(CreatePersonCommandProfile),
             typeof(UpdatePersonCommandProfile),
             typeof(GetPersonQueryProfile),
             typeof(ListPersonQueryProfile));
+    }
 
     private static void AddRepositories(this IServiceCollection services, IConfiguration configuration)
     {
         var mongoSettings = configuration.GetSection(nameof(MongoRepositorySettings));
-        var clientSettings = MongoClientSettings.FromConnectionString(mongoSettings.Get<MongoRepositorySettings>().ConnectionString);
+        var clientSettings =
+            MongoClientSettings.FromConnectionString(mongoSettings.Get<MongoRepositorySettings>().ConnectionString);
 
         services.Configure<MongoRepositorySettings>(mongoSettings);
         services.AddSingleton<IMongoClient>(new MongoClient(clientSettings));
